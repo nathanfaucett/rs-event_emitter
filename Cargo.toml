@@ -1,0 +1,13 @@
+[package]
+name = "event_emitter"
+version = "0.1.0"
+authors = ["nathanfaucett <nathanfaucett@gmail.com>"]
+
+keywords = ["event_emitter"]
+description = "event emitter"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/nathanfaucett/rs-event_emitter.git"
+homepage = "https://github.com/nathanfaucett/rs-event_emitter"
+
+[dependencies]
