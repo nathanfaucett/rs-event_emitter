@@ -9,5 +9,3 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/nathanfaucett/rs-event_emitter.git"
 homepage = "https://github.com/nathanfaucett/rs-event_emitter"
-
-[dependencies]

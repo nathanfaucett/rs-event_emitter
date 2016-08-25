@@ -52,9 +52,9 @@ impl Emitter for EventEmitter {
             None => (),
         }
     }
-    fn emit(&mut self, name: &str, data: &Any) {
-        if let Some(funcs) = self.events.get_mut(name) {
-            for func in funcs.iter_mut() {
+    fn emit(&self, name: &str, data: &Any) {
+        if let Some(funcs) = self.events.get(name) {
+            for func in funcs.iter() {
                 func(data);
             }
         }
