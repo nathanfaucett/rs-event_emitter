@@ -4,6 +4,8 @@
 
 extern crate alloc;
 extern crate collections;
+
+#[macro_use]
 extern crate event_emitter;
 
 
@@ -14,9 +16,27 @@ use core::any::Any;
 use event_emitter::{EventEmitter, Emitter};
 
 
+struct TestEmitter {
+    event_emitter: EventEmitter,
+}
+impl TestEmitter {
+    pub fn new() -> Self {
+        TestEmitter {
+            event_emitter: EventEmitter::new(),
+        }
+    }
+    pub fn count(&self, name: &str) -> usize {
+        self.event_emitter.count(name)
+    }
+}
+impl Emitter for TestEmitter {
+    impl_Emitter!(event_emitter);
+}
+
+
 #[test]
 fn test_event_emitter() {
-    let mut emitter = EventEmitter::new();
+    let mut emitter = TestEmitter::new();
 
     let on_test = |value: &Any| {
         match value.downcast_ref::<usize>() {
