@@ -1,20 +1,23 @@
 use collections::string::String;
 use collections::boxed::Box;
 use collections::vec::Vec;
-use collections::btree_map::BTreeMap;
 use core::any::Any;
+
+use hash_map::HashMap;
+use insert::Insert;
+use map::Map;
 
 use emitter::Emitter;
 
 
 pub struct EventEmitter {
-    events: BTreeMap<String, Vec<Box<Fn(&Any)>>>,
+    events: HashMap<String, Vec<Box<Fn(&Any)>>>,
 }
 
 impl EventEmitter {
     pub fn new() -> Self {
         EventEmitter {
-            events: BTreeMap::new(),
+            events: HashMap::new(),
         }
     }
     pub fn count(&self, name: &str) -> usize {
@@ -28,9 +31,10 @@ impl EventEmitter {
 impl Emitter for EventEmitter {
     fn on<F: Fn(&Any) + 'static>(&mut self, name: &str, func: F) -> usize {
         let ref mut events = self.events;
+        let n = String::from(name);
 
-        if !events.contains_key(name) {
-            events.insert(String::from(name), Vec::new());
+        if !events.contains_key(&n) {
+            events.insert(n, Vec::new());
         }
         let funcs = events.get_mut(name).unwrap();
         let index = funcs.len();

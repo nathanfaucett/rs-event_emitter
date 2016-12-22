@@ -4,6 +4,10 @@
 
 extern crate collections;
 
+extern crate hash_map;
+extern crate insert;
+extern crate map;
+
 
 mod emitter;
 mod event_emitter;
